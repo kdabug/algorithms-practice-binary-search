@@ -1,39 +1,38 @@
-function binarySearch(arr, element) {
+function binarySearch(arr, item) {
+  //make sure array is Sorted (any sort method)
+  if (arr.length > 1) {
+    arr.sort((a, b) => a - b);
+  }
+  console.log(arr);
+  //establish start and endpoints
   let start = 0;
   let end = arr.length - 1;
+  //establish midpoint
   let midPoint = Math.floor((start + end) / 2);
 
-  while (arr[midPoint] !== element && start < end) {
-    if (element < arr[middle]) {
-      stop = middle - 1;
+  //while loop ->
+  //check if midPoint is item
+  //or if there are no more items to check in array
+
+  while (arr[midPoint] !== item && start < end) {
+    if (item < arr[midPoint]) {
+      //item is less than midpoint
+      //change end position
+      end = midPoint - 1;
+      console.log("item is less than midPoint change end to", end);
     } else {
-      end = middle + 1;
+      //item is greater than midpoint
+      //change start position
+      start = midPoint + 1;
+      console.log("item is more than midPoint - change start to", start);
     }
-    midPoint = Math.floor((start + midPoint) / 2);
-  }
-
-  return arr[midPoint] !== element ? -1 : midPoint;
-}
-
-function recursiveBinarySearch(
-  arr,
-  element,
-  midPoint = Math.floor(arr.length - 1) / 2,
-  start = 0,
-  end = arr.length - 1
-) {
-  if (start === end) {
-    return arr[midPoint] === element ? midPoint : -1;
-  }
-  if (arr[midPoint] === element) {
-    return midPoint;
-  } else if (arr[midPoint] < element) {
-    start = midPoint + 1;
+    //establish new midPoint
+    console.log("no match - we are searching through the array again");
     midPoint = Math.floor((start + end) / 2);
-    return recursiveBinarySearch(arr, element, midPoint, start, end);
-  } else {
-    end = midPoint - 1;
-    midPoint = Math.floor((start + end) / 2);
-    return recursiveBinarySearch(arr, element, midPoint, start, end);
   }
+  //return midPoint if it is value or -1 if it is not
+  console.log(arr[midPoint] !== item ? -1 : midPoint);
+  return arr[midPoint] !== item ? -1 : midPoint;
 }
+let ourArray = [2, 16, 7, 8, 3, 7, 9];
+binarySearch(ourArray, 9);
