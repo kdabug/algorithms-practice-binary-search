@@ -3,6 +3,7 @@
 //  if the element is found, return the index at which it was found
 
 function binarySearch(arr, item) {
+  //sort the array - only needed if not sorted
   //establish start and end points
   //establish midpoint
   //determine if midpoint is the item
